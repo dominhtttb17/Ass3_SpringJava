@@ -10,20 +10,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/employees")
 public class EmployeeController {
-    private  final EmployeeService employeeService;
-
     @Autowired
-    public EmployeeController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    private EmployeeService employeeService;
+
+    @PostMapping("/new")
+    public String createEmployee(@RequestBody Employee employee) {
+        try {
+            return employeeService.create(employee);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
     }
 
-    @PostMapping
-    public Employee createEmployee(@RequestParam String name, @RequestParam double wage) {
-        return employeeService.createEmployee(name, wage);
-    }
-
-    @GetMapping
+    @GetMapping("/findAll")
     public List<Employee> findAllEmployees() {
-        return employeeService.findAllEmployees();
+        try {
+            return employeeService.findAll();
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return findAllEmployees();
     }
 }

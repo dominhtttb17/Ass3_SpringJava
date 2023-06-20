@@ -1,24 +1,25 @@
 package com.example.asss3.employee;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Entity
+@Table(name = "employee")
+@Data
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String name;
-    private double  wage;
+    private float  wage;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -30,11 +31,11 @@ public class Employee {
         this.name = name;
     }
 
-    public double  getWage() {
+    public float getWage() {
         return wage;
     }
 
-    public void setWage(double  wage) {
+    public void setWage(float wage) {
         this.wage = wage;
     }
 }

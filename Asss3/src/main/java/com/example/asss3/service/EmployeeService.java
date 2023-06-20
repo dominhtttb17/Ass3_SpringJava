@@ -1,7 +1,7 @@
 package com.example.asss3.service;
 
 import com.example.asss3.employee.Employee;
-import com.example.asss3.employee.EmployeeRepository;
+import com.example.asss3.respository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,22 +9,20 @@ import java.util.List;
 
 @Service
 public class EmployeeService {
-    private final EmployeeRepository employeeRepository;
-
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
-        this.employeeRepository = employeeRepository;
+    private EmployeeRepository employeeRepository;
+
+    public String create(Employee employee) {
+        try {
+            employeeRepository.save(employee);
+            return "success";
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            return "error";
+        }
     }
 
-    public Employee createEmployee(String name, double wage) {
-        Employee employee = new Employee();
-        employee.setName(name);
-        employee.setWage(wage);
-        return employeeRepository.save(employee);
-    }
-
-    public List<Employee> findAllEmployees() {
+    public List<Employee> findAll(){
         return employeeRepository.findAll();
     }
-
 }
