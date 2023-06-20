@@ -9,11 +9,12 @@ import java.math.BigDecimal;
 @Table(name = "employee")
 @Data
 public class Employee {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private float  wage;
+    private Float  wage;
 
     public Long getId() {
         return id;
@@ -31,11 +32,11 @@ public class Employee {
         this.name = name;
     }
 
-    public float getWage() {
+    public Float getWage() {
         return wage;
     }
 
-    public void setWage(float wage) {
+    public void setWage(Float wage) {
         this.wage = wage;
     }
 }

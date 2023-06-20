@@ -13,7 +13,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @PostMapping("/new")
+    @PostMapping
     public String createEmployee(@RequestBody Employee employee) {
         try {
             return employeeService.create(employee);
@@ -23,7 +23,7 @@ public class EmployeeController {
         }
     }
 
-    @GetMapping("/findAll")
+    @GetMapping
     public List<Employee> findAllEmployees() {
         try {
             return employeeService.findAll();
